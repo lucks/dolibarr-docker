@@ -1,7 +1,7 @@
 ARG ARCH=
 
-# Use an image like PHP_BASE_IMAGE=x.y-apache-buster
-FROM ${ARCH}php:%PHP_BASE_IMAGE%
+# Especifica la imagen base con PHP 8.2 y Apache
+FROM ${ARCH}php:8.2-apache
 
 # Credit/Initial maintainer: Garcia MICHEL <garcia@soamichel.fr>
 # Modified according to the GPL license by developers of the Dolibarr community:
