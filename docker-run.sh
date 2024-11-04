@@ -445,6 +445,18 @@ if [ "${1#-}" != "$1" ]; then
   set -- apache2-foreground "$@"
 fi
 
+# Verificar si la variable de entorno REMOVE_LOCK está configurada como "true"
+if [ "$REMOVE_LOCK" = "true" ]; then
+  echo "Removing install.lock to allow installation or upgrade..."
+  rm -f /var/www/documents/install.lock
+  
+  # Crear upgrade.unlock si REMOVE_LOCK está activado
+  echo "Creating upgrade.unlock for the update process..."
+  touch /var/www/documents/upgrade.unlock
+else
+  echo "No changes to lock files. Skipping install.lock and upgrade.unlock modifications."
+fi
+
 exec "$@"
 
 echo "docker-run.sh finished."
